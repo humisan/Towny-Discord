@@ -78,6 +78,14 @@ notification:
   siege_defended:
     title: "🛡️ 防衛に成功しました！"
     desc: "🏰 **{0}** は **{1}** からの攻撃を防ぎ切りました！"
+  siege_session_started:
+    title: "⚔️ 戦争時間が開始されました！"
+    desc: "戦争セッションが始まりました。包囲戦が可能です！"
+  siege_session_ended:
+    title: "🕊️ 戦争時間が終了しました"
+    desc: "本日の戦争セッションは終了しました。現在の戦況まとめ："
+    empty: "現在進行中の包囲戦はありません。"
+    format: "**{0}** (攻撃側: {1}) - {2}"
   
   info:
     type: "📜 戦術"

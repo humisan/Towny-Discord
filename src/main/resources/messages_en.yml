@@ -78,6 +78,14 @@ notification:
   siege_defended:
     title: "🛡️ Siege Repelled!"
     desc: "**{0}** has successfully defended against the siege by **{1}**!"
+  siege_session_started:
+    title: "⚔️ Battle Session Started!"
+    desc: "The battle session has begun. Sieges are now active!"
+  siege_session_ended:
+    title: "🕊️ Battle Session Ended"
+    desc: "The battle session has ended. Here is the summary of current sieges:"
+    empty: "No active sieges at the moment."
+    format: "**{0}** (Attacker: {1}) - {2}"
 
   info:
     type: "📜 Siege Type"

@@ -1,6 +1,9 @@
 package lol.hanyuu.townyDiscord.listeners;
 
+import com.gmail.goosius.siegewar.SiegeController;
 import com.gmail.goosius.siegewar.enums.SiegeSide;
+import com.gmail.goosius.siegewar.events.BattleSessionEndedEvent;
+import com.gmail.goosius.siegewar.events.BattleSessionStartedEvent;
 import com.gmail.goosius.siegewar.events.SiegeEndEvent;
 import com.gmail.goosius.siegewar.events.SiegeWarStartEvent;
 import com.gmail.goosius.siegewar.objects.Siege;
@@ -13,6 +16,7 @@ import org.bukkit.event.Listener;
 import java.awt.Color;
 import java.text.MessageFormat;
 import java.time.Instant;
+import java.util.List;
 
 public class SiegeWarEventListener implements Listener {
 
@@ -104,6 +108,56 @@ public class SiegeWarEventListener implements Listener {
 
             plugin.getDiscordManager().sendEmbed(channelId, eb.build());
         }
+    }
+
+    @EventHandler
+    public void onSessionStart(BattleSessionStartedEvent event) {
+        if (!plugin.getConfigManager().isNotificationEnabled("siege.session_started")) return;
+        String channelId = plugin.getConfigManager().getNotificationChannelId("siege.session_started");
+        if (channelId.isEmpty()) return;
+
+        LangManager lang = plugin.getLangManager();
+        EmbedBuilder eb = new EmbedBuilder();
+        eb.setTitle(lang.get("notification.siege_session_started.title"));
+        eb.setDescription(lang.get("notification.siege_session_started.desc"));
+        eb.setColor(Color.YELLOW); // Warning color for session start
+        eb.setTimestamp(Instant.now());
+        eb.setFooter("TownyDiscord", null);
+
+        plugin.getDiscordManager().sendEmbed(channelId, eb.build());
+    }
+
+    @EventHandler
+    public void onSessionEnd(BattleSessionEndedEvent event) {
+        if (!plugin.getConfigManager().isNotificationEnabled("siege.session_ended")) return;
+        String channelId = plugin.getConfigManager().getNotificationChannelId("siege.session_ended");
+        if (channelId.isEmpty()) return;
+
+        LangManager lang = plugin.getLangManager();
+        EmbedBuilder eb = new EmbedBuilder();
+        eb.setTitle(lang.get("notification.siege_session_ended.title"));
+        
+        StringBuilder desc = new StringBuilder();
+        desc.append(lang.get("notification.siege_session_ended.desc")).append("\n\n");
+        
+        List<Siege> sieges = SiegeController.getSieges();
+        if (sieges == null || sieges.isEmpty()) {
+            desc.append(lang.get("notification.siege_session_ended.empty"));
+        } else {
+            for (Siege s : sieges) {
+                String town = s.getTown().getName();
+                String attacker = s.getAttackerName();
+                String points = s.getFormattedAttackerBattlePoints() + " - " + s.getFormattedDefenderBattlePoints();
+                desc.append(MessageFormat.format(lang.get("notification.siege_session_ended.format"), town, attacker, points)).append("\n");
+            }
+        }
+        
+        eb.setDescription(desc.toString());
+        eb.setColor(Color.GREEN); // Safe color for session end
+        eb.setTimestamp(Instant.now());
+        eb.setFooter("TownyDiscord", null);
+
+        plugin.getDiscordManager().sendEmbed(channelId, eb.build());
     }
     
     private void addPointField(EmbedBuilder eb, Siege siege, LangManager lang) {

@@ -41,7 +41,13 @@ notifications:
       captured:
         enabled: true
         channel_id: ""
-      defended:
-        enabled: true
-        channel_id: ""
-  
+          defended:
+            enabled: true
+            channel_id: ""
+          session_started:
+            enabled: true
+            channel_id: ""
+          session_ended:
+            enabled: true
+            channel_id: ""
+      
