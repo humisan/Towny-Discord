@@ -1,20 +1,21 @@
-name: Build and Release Plugin
+name: Auto Release on Push
 
 on:
   push:
-    tags:
-      - "v*" # v1.0, v2.0.1 などのタグがプッシュされた時に実行
+    branches:
+      - master # masterへのプッシュで発火
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 全履歴を取得（タグとログの計算用）
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -23,17 +24,71 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
+      - name: Calculate Next Version
+        id: version
+        run: |
+          # 最新のタグを取得 (v1.0.0のような形式を想定)
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Latest tag: $LATEST_TAG"
+          
+          # バージョン番号を分解
+          VERSION=${LATEST_TAG#v}
+          IFS='.' read -r major minor patch <<< "$VERSION"
+          
+          # パッチバージョンをインクリメント
+          NEW_PATCH=$((patch + 1))
+          NEW_TAG="v$major.$minor.$NEW_PATCH"
+          
+          echo "Next tag: $NEW_TAG"
+          echo "tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          echo "prev_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+
+      - name: Generate Release Notes
+        id: notes
+        run: |
+          PREV_TAG=${{ steps.version.outputs.prev_tag }}
+          
+          echo "Generating notes from $PREV_TAG to HEAD"
+          
+          # コミットログを取得してフォーマット
+          # リリース本文用に改行コードなどをエスケープして環境変数に入れるのは難しいので
+          # 一旦ファイルに書き出す
+          git log ${PREV_TAG}..HEAD --pretty=format:"- %s (%h)" > release_notes.txt
+          
+          # ログが空（タグ打った直後など）の場合は適当なメッセージ
+          if [ ! -s release_notes.txt ]; then
+            echo "- No changes detected (Manual trigger?)" > release_notes.txt
+          fi
+          
+          cat release_notes.txt
+
+      - name: Update Version in plugin.yml (Optional)
+        run: |
+          NEW_TAG=${{ steps.version.outputs.tag }}
+          VERSION=${NEW_TAG#v}
+          sed -i "s/version: .*/version: '$VERSION'/" src/main/resources/plugin.yml
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew clean build
 
-      - name: Release
+      - name: Push New Tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          NEW_TAG=${{ steps.version.outputs.tag }}
+          git tag $NEW_TAG
+          git push origin $NEW_TAG
+
+      - name: Create Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.tag }}
+          body_path: release_notes.txt
           files: build/libs/*.jar
-          generate_release_notes: true # コミット内容やPRからリリースノートを自動生成
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
