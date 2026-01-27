@@ -69,6 +69,20 @@ notification:
   nation_deleted:
     title: "🏳️ Nation Dissolved..."
     desc: "🥀 **{0}** has dissolved and vanished from the map."
+  siege_started:
+    title: "⚔️ Siege Started!"
+    desc: "The town of **{0}** is under siege by **{1}**!"
+  siege_captured:
+    title: "🏳️ Town Captured!"
+    desc: "**{0}** has been captured by the forces of **{1}**!"
+  siege_defended:
+    title: "🛡️ Siege Repelled!"
+    desc: "**{0}** has successfully defended against the siege by **{1}**!"
+
+  info:
+    type: "📜 Siege Type"
+    points: "📊 Battle Points (⚔️ vs 🛡️)"
+    chest: "💰 War Chest"
 
 error:
   not_found: "❌ Not found: {0}"

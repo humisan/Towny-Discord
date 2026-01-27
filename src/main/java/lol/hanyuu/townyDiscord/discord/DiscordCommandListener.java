@@ -16,6 +16,7 @@ import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.Color;
+import java.text.MessageFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +139,7 @@ public class DiscordCommandListener extends ListenerAdapter {
         if (page > totalPages) page = totalPages;
         
         EmbedBuilder eb = new EmbedBuilder();
-        eb.setTitle(String.format(lang.get("embed.list.town_title"), page, totalPages));
+        eb.setTitle(MessageFormat.format(lang.get("embed.list.town_title"), page, totalPages));
         eb.setColor(Color.GREEN);
         
         int startIndex = (page - 1) * pageSize;
@@ -150,7 +151,7 @@ public class DiscordCommandListener extends ListenerAdapter {
         } else {
             for (int i = startIndex; i < endIndex; i++) {
                 Town t = towns.get(i);
-                String line = String.format(lang.get("embed.list.format"), t.getName(), t.getNumResidents(), t.getMayor().getName());
+                String line = MessageFormat.format(lang.get("embed.list.format"), t.getName(), t.getNumResidents(), t.getMayor().getName());
                 desc.append(line).append("\n");
             }
         }
@@ -187,7 +188,7 @@ public class DiscordCommandListener extends ListenerAdapter {
         if (page > totalPages) page = totalPages;
         
         EmbedBuilder eb = new EmbedBuilder();
-        eb.setTitle(String.format(lang.get("embed.list.nation_title"), page, totalPages));
+        eb.setTitle(MessageFormat.format(lang.get("embed.list.nation_title"), page, totalPages));
         eb.setColor(Color.ORANGE);
         
         int startIndex = (page - 1) * pageSize;
@@ -199,7 +200,7 @@ public class DiscordCommandListener extends ListenerAdapter {
         } else {
             for (int i = startIndex; i < endIndex; i++) {
                 Nation n = nations.get(i);
-                String line = String.format(lang.get("embed.list.format"), n.getName(), n.getNumResidents(), n.getKing().getName());
+                String line = MessageFormat.format(lang.get("embed.list.format"), n.getName(), n.getNumResidents(), n.getKing().getName());
                 desc.append(line).append("\n");
             }
         }
@@ -239,12 +240,12 @@ public class DiscordCommandListener extends ListenerAdapter {
         if (town == null) {
             EmbedBuilder eb = new EmbedBuilder();
             eb.setColor(Color.RED);
-            eb.setDescription(lang.get("error.town_not_found", name));
+            eb.setDescription(MessageFormat.format(lang.get("error.town_not_found"), name));
             return eb;
         }
 
         EmbedBuilder eb = new EmbedBuilder();
-        eb.setTitle(lang.get("embed.town.title", town.getName()));
+        eb.setTitle(MessageFormat.format(lang.get("embed.town.title"), town.getName()));
         eb.setColor(Color.GREEN);
         
         eb.setThumbnail("https://minotar.net/helm/" + town.getMayor().getName() + "/100.png");
@@ -319,12 +320,12 @@ public class DiscordCommandListener extends ListenerAdapter {
         if (nation == null) {
             EmbedBuilder eb = new EmbedBuilder();
             eb.setColor(Color.RED);
-            eb.setDescription(lang.get("error.nation_not_found", name));
+            eb.setDescription(MessageFormat.format(lang.get("error.nation_not_found"), name));
             return eb;
         }
 
         EmbedBuilder eb = new EmbedBuilder();
-        eb.setTitle(lang.get("embed.nation.title", nation.getName()));
+        eb.setTitle(MessageFormat.format(lang.get("embed.nation.title"), nation.getName()));
         eb.setColor(Color.ORANGE);
         
         eb.setThumbnail("https://minotar.net/helm/" + nation.getKing().getName() + "/100.png");
@@ -389,12 +390,12 @@ public class DiscordCommandListener extends ListenerAdapter {
         if (resident == null) {
             EmbedBuilder eb = new EmbedBuilder();
             eb.setColor(Color.RED);
-            eb.setDescription(lang.get("error.resident_not_found", name));
+            eb.setDescription(MessageFormat.format(lang.get("error.resident_not_found"), name));
             return eb;
         }
 
         EmbedBuilder eb = new EmbedBuilder();
-        eb.setTitle(lang.get("embed.resident.title", resident.getName()));
+        eb.setTitle(MessageFormat.format(lang.get("embed.resident.title"), resident.getName()));
         eb.setColor(Color.BLUE);
         
         eb.setThumbnail("https://minotar.net/helm/" + resident.getName() + "/100.png");

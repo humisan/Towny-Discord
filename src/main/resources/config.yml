@@ -25,10 +25,23 @@ notifications:
     deleted:
       enabled: true
       channel_id: ""
-  nation:
-    created:
-      enabled: true
-      channel_id: ""
-    deleted:
-      enabled: true
-      channel_id: ""
+    nation:
+      created:
+        enabled: true
+        channel_id: ""
+      deleted:
+        enabled: true
+        channel_id: ""
+    
+    # SiegeWar Notifications
+    siege:
+      started:
+        enabled: true
+        channel_id: ""
+      captured:
+        enabled: true
+        channel_id: ""
+      defended:
+        enabled: true
+        channel_id: ""
+  

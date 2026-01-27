@@ -69,6 +69,20 @@ notification:
   nation_deleted:
     title: "🏳️ 国が滅亡しました..."
     desc: "🥀 **{0}** は崩壊し、地図から消滅しました。"
+  siege_started:
+    title: "⚔️ 包囲戦が開始されました！"
+    desc: "🏰 **{0}** が **{1}** によって包囲されています！"
+  siege_captured:
+    title: "🏳️ 町が陥落しました！"
+    desc: "🥀 **{0}** は **{1}** の軍勢によって占領されました！"
+  siege_defended:
+    title: "🛡️ 防衛に成功しました！"
+    desc: "🏰 **{0}** は **{1}** からの攻撃を防ぎ切りました！"
+  
+  info:
+    type: "📜 戦術"
+    points: "📊 戦況ポイント (⚔️ vs 🛡️)"
+    chest: "💰 略奪金"
 
 error:
   not_found: "❌ 見つかりませんでした: {0}"

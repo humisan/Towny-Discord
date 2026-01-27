@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import java.awt.Color;
+import java.text.MessageFormat;
 import java.time.Instant;
 
 public class TownyEventListener implements Listener {
@@ -30,7 +31,7 @@ public class TownyEventListener implements Listener {
         LangManager lang = plugin.getLangManager();
         EmbedBuilder eb = new EmbedBuilder();
         eb.setTitle(lang.get("notification.town_created.title"));
-        eb.setDescription(String.format(lang.get("notification.town_created.desc"), event.getTown().getName(), event.getTown().getMayor().getName()));
+        eb.setDescription(MessageFormat.format(lang.get("notification.town_created.desc"), event.getTown().getName(), event.getTown().getMayor().getName()));
         eb.setColor(Color.GREEN);
         eb.setTimestamp(Instant.now());
         eb.setFooter("TownyDiscord", null);
@@ -47,7 +48,7 @@ public class TownyEventListener implements Listener {
         LangManager lang = plugin.getLangManager();
         EmbedBuilder eb = new EmbedBuilder();
         eb.setTitle(lang.get("notification.town_deleted.title"));
-        eb.setDescription(String.format(lang.get("notification.town_deleted.desc"), event.getTownName()));
+        eb.setDescription(MessageFormat.format(lang.get("notification.town_deleted.desc"), event.getTownName()));
         eb.setColor(Color.RED);
         eb.setTimestamp(Instant.now());
         eb.setFooter("TownyDiscord", null);
@@ -64,7 +65,7 @@ public class TownyEventListener implements Listener {
         LangManager lang = plugin.getLangManager();
         EmbedBuilder eb = new EmbedBuilder();
         eb.setTitle(lang.get("notification.nation_created.title"));
-        eb.setDescription(String.format(lang.get("notification.nation_created.desc"), event.getNation().getName(), event.getNation().getKing().getName()));
+        eb.setDescription(MessageFormat.format(lang.get("notification.nation_created.desc"), event.getNation().getName(), event.getNation().getKing().getName()));
         eb.setColor(Color.ORANGE);
         eb.setTimestamp(Instant.now());
         eb.setFooter("TownyDiscord", null);
@@ -81,7 +82,7 @@ public class TownyEventListener implements Listener {
         LangManager lang = plugin.getLangManager();
         EmbedBuilder eb = new EmbedBuilder();
         eb.setTitle(lang.get("notification.nation_deleted.title"));
-        eb.setDescription(String.format(lang.get("notification.nation_deleted.desc"), event.getNationName()));
+        eb.setDescription(MessageFormat.format(lang.get("notification.nation_deleted.desc"), event.getNationName()));
         eb.setColor(Color.DARK_GRAY);
         eb.setTimestamp(Instant.now());
         eb.setFooter("TownyDiscord", null);

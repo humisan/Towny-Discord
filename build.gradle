@@ -13,12 +13,14 @@ repositories {
         name = "spigotmc-repo"
         url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
     }
+    maven { url 'https://repo.glaremasters.me/repository/towny/' }
     maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly("com.github.TownyAdvanced.towny:towny:0.101.2.1")
+    compileOnly("com.github.TownyAdvanced:SiegeWar:2.4.0") { transitive = false }
     implementation("net.dv8tion:JDA:5.0.0-beta.24") {
         exclude module: 'opus-java'
     }
