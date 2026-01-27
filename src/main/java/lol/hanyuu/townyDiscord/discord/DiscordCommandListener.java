@@ -260,7 +260,7 @@ public class DiscordCommandListener extends ListenerAdapter {
              eb.addField(lang.get("embed.town.nation"), lang.get("embed.common.none"), true);
         }
 
-        eb.addField(lang.get("embed.town.residents"), town.getNumResidents() + "人", true);
+        eb.addField(lang.get("embed.town.residents"), String.valueOf(town.getNumResidents()), true);
         String plots = town.getTownBlocks().size() + " / " + town.getMaxTownBlocks();
         eb.addField(lang.get("embed.town.plots"), plots, true);
 
@@ -336,8 +336,8 @@ public class DiscordCommandListener extends ListenerAdapter {
             eb.addField(lang.get("embed.nation.capital"), nation.getCapital().getName(), true);
         }
         
-        eb.addField(lang.get("embed.nation.residents"), nation.getNumResidents() + "人", true);
-        eb.addField(lang.get("embed.nation.towns"), nation.getNumTowns() + "町", true);
+        eb.addField(lang.get("embed.nation.residents"), String.valueOf(nation.getNumResidents()), true);
+        eb.addField(lang.get("embed.nation.towns"), String.valueOf(nation.getNumTowns()), true);
         
         try {
              eb.addField(lang.get("embed.nation.balance"), formatBalance(nation.getAccount().getHoldingBalance()), true);

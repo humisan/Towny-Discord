@@ -28,34 +28,34 @@ public class DiscordManager {
     public void start() {
         String token = plugin.getConfigManager().getDiscordToken();
         if (token == null || token.equals("YOUR_BOT_TOKEN_HERE") || token.isEmpty()) {
-            plugin.getLogger().warning("DiscordのBotトークンが設定されていません！Discord連携は無効化されます。");
+            plugin.getLogger().warning("Discord Bot token is not set! Discord integration will be disabled.");
             return;
         }
 
         try {
             jda = JDABuilder.createLight(token, Collections.emptyList())
                     .addEventListeners(new DiscordCommandListener(plugin))
-                    .build(); // Activityは後でタスクで設定するためここでは設定しない
+                    .build(); // Activity is set by a task later
 
             jda.updateCommands().addCommands(
-                    Commands.slash("town", "指定した町の情報を表示します")
-                            .addOption(OptionType.STRING, "name", "町名", false),
-                    Commands.slash("nation", "指定した国の情報を表示します")
-                            .addOption(OptionType.STRING, "name", "国名", false),
-                    Commands.slash("res", "指定した住人の情報を表示します")
-                            .addOption(OptionType.STRING, "name", "プレイヤー名", false),
-                    Commands.slash("townlist", "町のリストを表示します")
-                            .addOption(OptionType.INTEGER, "page", "ページ番号", false),
-                    Commands.slash("nationlist", "国のリストを表示します")
-                            .addOption(OptionType.INTEGER, "page", "ページ番号", false)
+                    Commands.slash("town", "Displays information about a town")
+                            .addOption(OptionType.STRING, "name", "Town name", false),
+                    Commands.slash("nation", "Displays information about a nation")
+                            .addOption(OptionType.STRING, "name", "Nation name", false),
+                    Commands.slash("res", "Displays information about a resident")
+                            .addOption(OptionType.STRING, "name", "Resident name", false),
+                    Commands.slash("townlist", "Displays a list of towns")
+                            .addOption(OptionType.INTEGER, "page", "Page number", false),
+                    Commands.slash("nationlist", "Displays a list of nations")
+                            .addOption(OptionType.INTEGER, "page", "Page number", false)
             ).queue();
             
             startActivityTask();
             
-            plugin.getLogger().info("Discord Botが起動しました！");
+            plugin.getLogger().info("Discord Bot has started!");
 
         } catch (Exception e) {
-            plugin.getLogger().severe("Discord Botの起動に失敗しました: " + e.getMessage());
+            plugin.getLogger().severe("Failed to start Discord Bot: " + e.getMessage());
             e.printStackTrace();
         }
     }

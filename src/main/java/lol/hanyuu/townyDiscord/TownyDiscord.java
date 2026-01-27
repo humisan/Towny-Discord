@@ -29,7 +29,7 @@ public final class TownyDiscord extends JavaPlugin {
             getLogger().info("SiegeWar hook enabled!");
         }
         
-        getLogger().info("TownyDiscord が有効化されました！");
+        getLogger().info("TownyDiscord has been enabled!");
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class TownyDiscord extends JavaPlugin {
         if (this.discordManager != null) {
             this.discordManager.stop();
         }
-        getLogger().info("TownyDiscord が無効化されました！");
+        getLogger().info("TownyDiscord has been disabled!");
     }
     
     public ConfigManager getConfigManager() {

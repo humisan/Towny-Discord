@@ -37,7 +37,7 @@ public class SiegeWarEventListener implements Listener {
         eb.setTitle(lang.get("notification.siege_started.title"));
         eb.setDescription(MessageFormat.format(lang.get("notification.siege_started.desc"), townName, attackerName));
         
-        // 詳細情報: 戦術
+        // Detail: Siege Type
         try {
             String type = siege.getSiegeType().name();
             eb.addField(lang.get("notification.info.type"), type, true);
@@ -53,6 +53,7 @@ public class SiegeWarEventListener implements Listener {
     @EventHandler
     public void onSiegeEnd(SiegeEndEvent event) {
         Siege siege = event.getSiege();
+        // Check if winner is null
         SiegeSide winner = siege.getSiegeWinner();
         
         String townName = siege.getTown().getName();
@@ -68,10 +69,10 @@ public class SiegeWarEventListener implements Listener {
             eb.setTitle(lang.get("notification.siege_captured.title"));
             eb.setDescription(MessageFormat.format(lang.get("notification.siege_captured.desc"), townName, attackerName));
             
-            // ポイント
+            // Battle Points
             addPointField(eb, siege, lang);
             
-            // 略奪金
+            // War Chest
             try {
                 double chest = siege.getWarChestAmount();
                 if (chest > 0) {
@@ -94,7 +95,7 @@ public class SiegeWarEventListener implements Listener {
             eb.setTitle(lang.get("notification.siege_defended.title"));
             eb.setDescription(MessageFormat.format(lang.get("notification.siege_defended.desc"), townName, attackerName));
             
-            // ポイント
+            // Battle Points
             addPointField(eb, siege, lang);
 
             eb.setColor(Color.CYAN);
