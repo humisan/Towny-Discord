@@ -1,0 +1,34 @@
+# Discord Bot Token
+# Get your bot token from the Discord Developer Portal.
+discord_token: "YOUR_BOT_TOKEN_HERE"
+
+# Language setting (en, ja)
+language: en
+
+# Bot Activity Status Settings
+activity:
+  enabled: true
+  update_interval: 60 # Update interval in seconds
+  messages:
+    - "Minecraft Towny Server"
+    - "{online}/{max_players} Players Online"
+    - "{towns} Towns | {nations} Nations"
+
+# Notification Settings
+# Configure channel IDs to send notifications for specific events.
+# Leave channel_id empty ("") to disable specific notifications even if enabled is true.
+notifications:
+  town:
+    created:
+      enabled: true
+      channel_id: "" 
+    deleted:
+      enabled: true
+      channel_id: ""
+  nation:
+    created:
+      enabled: true
+      channel_id: ""
+    deleted:
+      enabled: true
+      channel_id: ""

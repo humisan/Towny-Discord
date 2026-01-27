@@ -1,0 +1,80 @@
+embed:
+  town:
+    title: "🏘️ 町の情報: {0}"
+    mayor: "👑 市長"
+    residents: "👥 住民数"
+    balance: "💰 銀行残高"
+    board: "📋 掲示板"
+    founded: "🗓️ 設立日"
+    nation: "🚩 所属国"
+    plots: "🗺️ 領土 (チャンク)"
+    taxes: "⚖️ 税率"
+    location: "📍 位置"
+    status: "⚙️ 状態"
+    flags: "🛡️ フラグ"
+  nation:
+    title: "🏰 国の情報: {0}"
+    king: "👑 国王"
+    towns: "🏘️ 加盟町数"
+    capital: "🏛️ 首都"
+    residents: "👥 総人口"
+    balance: "💰 国庫残高"
+    taxes: "⚖️ 税率"
+    spawn: "🏹 スポーン"
+    founded: "🗓️ 建国日"
+    allies: "🤝 同盟国"
+    enemies: "⚔️ 敵対国"
+  resident:
+    title: "👤 住人の情報: {0}"
+    town: "🏘️ 所属町"
+    rank: "🎖️ 役職"
+    last_online: "🕒 最終ログイン"
+    friends: "🤝 フレンド"
+    surname: "🏷️ 称号(後)"
+    title_name: "🏷️ 称号(前)"
+    joined: "📅 参加日"
+    status: "📶 状態"
+    plots: "🗺️ 所有区画"
+
+  list:
+    town_title: "🏘️ 町のリスト (ページ {0}/{1})"
+    nation_title: "🏰 国のリスト (ページ {0}/{1})"
+    format: "**{0}** (👥 {1}, 👑 {2})"
+    empty: "👻 データがありません。"
+    prev: "◀️ 前へ"
+    next: "▶️ 次へ"
+
+  common:
+    none: "なし"
+    online: "🟢 オンライン"
+    offline: "🔴 オフライン"
+    open: "🔓 開放"
+    closed: "🔒 閉鎖"
+    pvp_on: "⚔️ PvP許可"
+    pvp_off: "🛡️ PvP不可"
+    public: "🌍 公開"
+    private: "🏠 非公開"
+    neutral: "🕊️ 中立"
+
+notification:
+  town_created:
+    title: "🎉 新しい町が建設されました！"
+    desc: "🏘️ **{0}** という町が 👑 **{1}** によって建設されました！"
+  town_deleted:
+    title: "🗑️ 町が廃墟となりました..."
+    desc: "🏚️ **{0}** は崩壊し、歴史から姿を消しました。"
+  nation_created:
+    title: "🚩 新しい国が建国されました！"
+    desc: "🏰 **{0}** という国が 👑 **{1}** によって建国されました！"
+  nation_deleted:
+    title: "🏳️ 国が滅亡しました..."
+    desc: "🥀 **{0}** は崩壊し、地図から消滅しました。"
+
+error:
+  not_found: "❌ 見つかりませんでした: {0}"
+  generic: "⚠️ エラーが発生しました。"
+  town_not_found: "🏘️ 町 '{0}' は見つかりませんでした。"
+  nation_not_found: "🏰 国 '{0}' は見つかりませんでした。"
+  resident_not_found: "👤 住人 '{0}' は見つかりませんでした。"
+  towny_disabled: "🚫 Townyプラグインがサーバーで有効になっていません。"
+  specify_name: "❗ 名前を指定してください。"

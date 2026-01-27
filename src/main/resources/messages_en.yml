@@ -1,0 +1,80 @@
+embed:
+  town:
+    title: "🏘️ Town Info: {0}"
+    mayor: "👑 Mayor"
+    residents: "👥 Residents"
+    balance: "💰 Bank Balance"
+    board: "📋 Board"
+    founded: "🗓️ Founded"
+    nation: "🚩 Nation"
+    plots: "🗺️ Town Blocks"
+    taxes: "⚖️ Taxes"
+    location: "📍 Location"
+    status: "⚙️ Status"
+    flags: "🛡️ Flags"
+  nation:
+    title: "🏰 Nation Info: {0}"
+    king: "👑 King"
+    towns: "🏘️ Towns"
+    capital: "🏛️ Capital"
+    residents: "👥 Population"
+    balance: "💰 Bank Balance"
+    taxes: "⚖️ Taxes"
+    spawn: "🏹 Spawn"
+    founded: "🗓️ Founded"
+    allies: "🤝 Allies"
+    enemies: "⚔️ Enemies"
+  resident:
+    title: "👤 Resident Info: {0}"
+    town: "🏘️ Town"
+    rank: "🎖️ Rank"
+    last_online: "🕒 Last Online"
+    friends: "🤝 Friends"
+    surname: "🏷️ Surname"
+    title_name: "🏷️ Title"
+    joined: "📅 Joined"
+    status: "📶 Status"
+    plots: "🗺️ Plots"
+
+  list:
+    town_title: "🏘️ Town List (Page {0}/{1})"
+    nation_title: "🏰 Nation List (Page {0}/{1})"
+    format: "**{0}** (👥 {1}, 👑 {2})"
+    empty: "👻 No data available."
+    prev: "◀️ Prev"
+    next: "▶️ Next"
+
+  common:
+    none: "None"
+    online: "🟢 Online"
+    offline: "🔴 Offline"
+    open: "🔓 Open"
+    closed: "🔒 Closed"
+    pvp_on: "⚔️ PvP On"
+    pvp_off: "🛡️ PvP Off"
+    public: "🌍 Public"
+    private: "🏠 Private"
+    neutral: "🕊️ Neutral"
+
+notification:
+  town_created:
+    title: "🎉 New Town Established!"
+    desc: "🏘️ The town of **{0}** has been founded by 👑 **{1}**!"
+  town_deleted:
+    title: "🗑️ Town Fallen into Ruins..."
+    desc: "🏚️ **{0}** has fallen and disappeared from history."
+  nation_created:
+    title: "🚩 New Nation Founded!"
+    desc: "🏰 The nation of **{0}** has been founded by 👑 **{1}**!"
+  nation_deleted:
+    title: "🏳️ Nation Dissolved..."
+    desc: "🥀 **{0}** has dissolved and vanished from the map."
+
+error:
+  not_found: "❌ Not found: {0}"
+  generic: "⚠️ An error occurred."
+  town_not_found: "🏘️ Town '{0}' was not found."
+  nation_not_found: "🏰 Nation '{0}' was not found."
+  resident_not_found: "👤 Resident '{0}' was not found."
+  towny_disabled: "🚫 Towny is not enabled on this server."
+  specify_name: "❗ Please specify a name."

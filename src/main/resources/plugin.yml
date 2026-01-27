@@ -1,0 +1,6 @@
+name: TownyDiscord
+version: '1.0'
+main: lol.hanyuu.townyDiscord.TownyDiscord
+author: Hanyuu
+api-version: '1.21'
+depend: [Towny]
